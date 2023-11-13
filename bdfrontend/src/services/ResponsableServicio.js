@@ -41,3 +41,16 @@ export const eliminarResponsable = async (id) => {
   }
 };
   
+
+export const getResponsableID = async (id) => { 
+  let data = await api.get(`Director/${id}`).then(result => result.data);
+  return data;
+};
+
+export const updateResponsable = async (newData) => { 
+  
+  console.log(newData);    
+  // En este punto, `newData` debe ser un objeto con los datos de la reserva  a actualizar
+  let data = await api.put(`/Director/${newData.i}`, newData).then(result => result.data);
+  return data;
+};

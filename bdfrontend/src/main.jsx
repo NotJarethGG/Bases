@@ -31,6 +31,11 @@ import "react-toastify/dist/ReactToastify.css";
 import CrearResponsable from './pages/Responsable/crearResponsable';
 import { Componente } from './pages/Dashboard/dashboard';
 import Login from './pages/Login/login';
+import EditarResponsable from './pages/Responsable/editarResponsable';
+import EditarActuacion from './pages/Actuaciones/editarActuaciones';
+import EditarProyecto from './pages/Proyectos/editarProyectos';
+import EditarPoblacion from './pages/Poblacion/editarPoblacion';
+import EditarDirector from './pages/Director/editarDirector';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -44,6 +49,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* <Route path="/home" element={<Home />}   */}
         <Route path="/listRes" element={<ListaResponsable/>}/>
         <Route path='/agregar-responsable-admin' element={<CrearResponsable/>}/>
+        <Route path="/Responsable/:id" element={<EditarResponsable/>}/>
 
         <Route path="/listaPais" element={<ListaPais/>}/>
         <Route path="/agregar-pais-admin" element={<CrearPaises/>}/>
@@ -55,15 +61,19 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path='/listActuaciones' element={<ListaActuacion/>}/>
         <Route path='/agregar-actuacion-admin' element={<CrearActuacion/>}/>
+        <Route path="/Actuacion/:id" element={<EditarActuacion/>}/>
 
         <Route path='/listProyectos' element={<ListaProyectos/>}/>
         <Route path='/agregar-proyecto-admin' element={<CrearProyecto/>}/>
+        <Route path="/Proyecto/:id" element={<EditarProyecto/>}/>
 
         <Route path='/listPoblacion' element={<ListaPoblacion/>}/>
         <Route path='/agregar-poblacion-admin' element={<CrearPoblacion/>}/>
+        <Route path="/Poblacion/:id" element={<EditarPoblacion/>}/>
 
         <Route path='/listDirector' element={<ListaDirector/>}/>
         <Route path='/agregar-director-admin' element={<CrearDirector/>}/>
+        <Route path="/Director/:id" element={<EditarDirector/>}/>
 
         <Route path='/dashboard' element={<Componente/>}/>
 

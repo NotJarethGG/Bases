@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { updateResponsable, getResponsableID } from '../../services/ResponsableServicio';
 import { toast, ToastContainer } from 'react-toastify';
 
-const EditarDirector = () => {
+const EditarResponsable = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
 
@@ -57,11 +57,11 @@ const EditarDirector = () => {
 
   return (
     <div className="edit-container-tipo">
-      <h1 className="edit-tipo">Editar Director</h1>
-      <p className="edit-id">ID del Director a editar: {id}</p>
+      <h1 className="edit-tipo">Editar Responsable</h1>
+      <p className="edit-id">ID del Responsable a editar: {id}</p>
       <form onSubmit={handleRegistro} className="edit-form">
         <div className="edit-input">
-          <label htmlFor="idDirector" className="edit-label">IdDirector:</label>
+          <label htmlFor="idDirector" className="edit-label">IdResponsable:</label>
           <input
             type="text"
             id="idDirector"
@@ -103,4 +103,4 @@ const EditarDirector = () => {
   );
 };
 
-export default EditarDirector;
+export default EditarResponsable;

@@ -10,7 +10,6 @@ const CrearPoblacion = () => {
   const IdPaisRef = useRef(null);
   const NumHabitantesRef = useRef(null);
   const DescripcionRef = useRef(null);
-  const IdActuacionRef = useRef(null);
   const StatusRef = useRef(null);
 
   const mutation = useMutation("poblacion", createPoblacion, {
@@ -34,7 +33,6 @@ const CrearPoblacion = () => {
       idPais: IdPaisRef.current.value,
       numHabitantes: NumHabitantesRef.current.value,
       descripcion: DescripcionRef.current.value,
-      idActuacion: IdActuacionRef.current.value,
       status: StatusRef.current.value,
     };
 
@@ -91,15 +89,6 @@ const CrearPoblacion = () => {
             type="text"
             id="descripcion"
             ref={DescripcionRef}
-          />
-        </div>
-        <div className='div-input-tipo'>
-          <label htmlFor="idActuacion">ID de la Actuación:</label>
-          <input
-            type="text"
-            id="idActuacion"
-            ref={IdActuacionRef}
-            required
           />
         </div>
         <div className='div-input-tipo'>

@@ -58,6 +58,7 @@ const ListaActuacion = () => {
                 <th>Descripcion</th>
                 <th>ID Proyecto</th>
                 <th>Status</th> {/* Asegúrate de que el nombre del campo sea "Status" */}
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>

@@ -29,7 +29,7 @@ const CrearSedes = () => {
     // Realiza la validación del formulario aquí
 
     let newSede = {
-      cidudad: ciudadRef.current.value,
+      ciudad: ciudadRef.current.value,
       direccion: direccionRef.current.value,
       idPais: idPaisRef.current.value,
       telefono: telefonoRef.current.value,

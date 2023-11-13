@@ -32,6 +32,8 @@ const Sidebar = ({ children }) => {
         { to: 'listProyectos', text: 'Proyectos'},
 
         { to: 'listPoblacion', text: 'Poblacion'},
+
+        { to: 'listDirector', text: 'Director'}
     ];
 
     return (

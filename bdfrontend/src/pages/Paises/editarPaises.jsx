@@ -23,8 +23,8 @@ const EditarPais = () => {
     let newData = {
       id: id,
       idPais: IdPais.current.value, // Campo IdPais
-      Nombre: NombrePais.current.value,
-      Status: StatusPais.current.value,
+      nombre: NombrePais.current.value,
+      status: StatusPais.current.value,
     };
 
     console.log(newData);

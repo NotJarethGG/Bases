@@ -57,7 +57,6 @@ const ListaPoblacion = () => {
                 <th>ID Pais</th>
                 <th>Numero Habitantes</th>
                 <th>Descripcion</th>
-                <th>Id Actuacion</th>
                 <th>Status</th>
                 <th>Acciones</th> 
               </tr>
@@ -65,11 +64,11 @@ const ListaPoblacion = () => {
             <tbody>
               {currentData.map((poblacion) => (
                 <tr key={poblacion.idPoblacion}>
+                  <td>{poblacion.idPoblacion}</td>
                   <td>{poblacion.nombre}</td>
                   <td>{poblacion.idPais}</td>
                   <td>{poblacion.numHabitantes}</td>
                   <td>{poblacion.descripcion}</td>
-                  <td>{poblacion.idActuacion}</td>
                   <td>{poblacion.status}</td>
                   <td>
                     <button

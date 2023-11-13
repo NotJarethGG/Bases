@@ -59,6 +59,7 @@ const ListaSedes = () => {
                 <th>Telefono</th>
                 <th>ID Director</th>
                 <th>Status</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>

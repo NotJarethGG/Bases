@@ -66,6 +66,7 @@ const ListaProyectos = () => {
             <tbody>
               {currentData.map((proyecto) => (
                 <tr key={proyecto.idProyecto}>
+                  <td>{proyecto.idProyecto}</td>
                   <td>{proyecto.titulo}</td>
                   <td>{proyecto.fecha_Inicio}</td>
                   <td>{proyecto.fecha_Fin}</td>

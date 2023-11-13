@@ -72,7 +72,7 @@ const CrearProyecto = () => {
         <div className='div-input-tipo'>
           <label htmlFor="fechaInicio">Fecha de Inicio:</label>
           <input
-            type="datetime-local"
+            type="date"
             id="fechaInicio"
             ref={FechaInicioRef}
             required
@@ -81,7 +81,7 @@ const CrearProyecto = () => {
         <div className='div-input-tipo'>
           <label htmlFor="fechaFin">Fecha de Fin:</label>
           <input
-            type="datetime-local"
+            type="date"
             id="fechaFin"
             ref={FechaFinRef}
             required

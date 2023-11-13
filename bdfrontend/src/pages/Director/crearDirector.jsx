@@ -1,17 +1,17 @@
 import { useRef } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import { createResponsable } from '../../services/ResponsableServicio';
 import { toast, ToastContainer } from 'react-toastify';
+import { createDirector } from '../../services/DirectorServicio';
 
-const CrearResponsable = () => {
+const CrearDirector = () => {
   const queryClient = useQueryClient();
-  const IDResponsableRef = useRef(null);
+  const IDDirectorRef = useRef(null);
   const IDUsuarioRef = useRef(null);
   const StatusRef = useRef(null);
 
-  const mutation = useMutation("Responsable", createResponsable, {
-    onSettled: () => queryClient.invalidateQueries("Responsable"),
-    mutationKey: "Responsable",
+  const mutation = useMutation("director", createDirector, {
+    onSettled: () => queryClient.invalidateQueries("director"),
+    mutationKey: "director",
     onError: (error) => {
       toast.error('Error al guardar: ' + error.message, {
         position: toast.POSITION.TOP_RIGHT
@@ -24,13 +24,13 @@ const CrearResponsable = () => {
 
     // Realiza la validación del formulario aquí
 
-    let newResponsable = {
-      idResponsable: IDResponsableRef.current.value,
+    let newDirector = {
+      idDirector: IDDirectorRef.current.value,
       userId: IDUsuarioRef.current.value,
       status: StatusRef.current.value,
     };
 
-    await mutation.mutateAsync(newResponsable);
+    await mutation.mutateAsync(newDirector);
 
     toast.success('¡Guardado Exitosamente!', {
       position: toast.POSITION.TOP_RIGHT
@@ -39,41 +39,42 @@ const CrearResponsable = () => {
 
   return (
     <div className="CrearSoli">
-      <h2>Crear Responsable</h2>
+      <h2>Crear Director</h2>
       <form onSubmit={handleRegistro}>
         <div className='div-input-tipo'>
-          <label htmlFor="IDResponsable">ID Responsable:</label>
+          <label htmlFor="idDirector">ID Director</label>
           <input
             type="text"
-            id="IDResponsable"
-            ref={IDResponsableRef}
+            id="idDirector"
+            ref={IDDirectorRef}
             required
           />
         </div>
         <div className='div-input-tipo'>
-          <label htmlFor="IDUsuario">ID Usuario:</label>
+          <label htmlFor="idUsuario">ID Usuario:</label>
           <input
             type="text"
-            id="IDUsuario"
+            id="nombre"
             ref={IDUsuarioRef}
             required
           />
         </div>
         <div className='div-input-tipo'>
-          <label htmlFor="Status">Status:</label>
+          <label htmlFor="status">Status:</label>
           <input
             type="text"
-            id="Status"
+            id="status"
             ref={StatusRef}
             required
           />
         </div>
-        
-        <button type="submit">Guardar</button>
+        <button type="submit" className="btnCrearActuacion">
+          Crear
+        </button>
       </form>
       <ToastContainer />
     </div>
   );
 };
 
-export default CrearResponsable;
+export default CrearDirector;

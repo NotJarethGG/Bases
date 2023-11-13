@@ -24,6 +24,11 @@ import ListaProyectos from './pages/Proyectos/listaProyectos';
 import CrearProyecto from './pages/Proyectos/crearProyecto';
 import ListaPoblacion from './pages/Poblacion/listaPoblacion';
 import CrearPoblacion from './pages/Poblacion/crearPoblacion';
+import ListaDirector from './pages/Director/listaDirector';
+import CrearDirector from './pages/Director/crearDirector';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import CrearResponsable from './pages/Responsable/crearResponsable';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -36,9 +41,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Layout />}>
         {/* <Route path="/home" element={<Home />}   */}
         <Route path="/listRes" element={<ListaResponsable/>}/>
+        <Route path='/agregar-responsable-admin' element={<CrearResponsable/>}/>
+
         <Route path="/listaPais" element={<ListaPais/>}/>
         <Route path="/agregar-pais-admin" element={<CrearPaises/>}/>
         <Route path="/Pais/:id" element={<EditarPais/>}/>
+        
         <Route path='/listSede' element={<ListaSedes/>}/>
         <Route path="/Sede/:id" element={<EditarSede/>}/>
         <Route path='/agregar-sede-admin' element={<CrearSedes/>}/>
@@ -52,11 +60,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/listPoblacion' element={<ListaPoblacion/>}/>
         <Route path='/agregar-poblacion-admin' element={<CrearPoblacion/>}/>
 
+        <Route path='/listDirector' element={<ListaDirector/>}/>
+        <Route path='/agregar-director-admin' element={<CrearDirector/>}/>
+
 
         </Route>
         
         </Routes>
-    
+        <ToastContainer />
     </BrowserRouter>
     
   </React.StrictMode>,

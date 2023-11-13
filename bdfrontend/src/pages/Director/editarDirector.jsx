@@ -1,19 +1,19 @@
 import { useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
-import { updateResponsable, getResponsableID } from '../../services/ResponsableServicio';
+import { updateDirector, getDirectorID } from '../../services/DirectorServicio';
 import { toast, ToastContainer } from 'react-toastify';
 
 const EditarDirector = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
 
-  const IdResponsableRef = useRef(null);
+  const IdDirectorRef = useRef(null);
   const IDUsuRef = useRef(null); // Cambiado el nombre de la referencia
   const StatusRef = useRef(null); // Cambiado el nombre de la referencia
 
-  const mutationKey = `Responsable/${id}`; // Cambiado el nombre del mutationKey
-  const mutation = useMutation(mutationKey, updateResponsable, {
+  const mutationKey = `Director/${id}`; // Cambiado el nombre del mutationKey
+  const mutation = useMutation(mutationKey, updateDirector, {
     onSettled: () => queryClient.invalidateQueries(mutationKey),
   });
 
@@ -22,7 +22,7 @@ const EditarDirector = () => {
 
     let newData = {
       id: id,
-      idDirector: IdResponsableRef.current.value,
+      idDirector: IdDirectorRef.current.value,
       userId: IDUsuRef.current.value, // Cambiado el nombre del campo
       status: StatusRef.current.value, // Cambiado el nombre del campo
     };
@@ -40,19 +40,19 @@ const EditarDirector = () => {
   };
 
   useEffect(() => {
-    async function cargarDatosResponsable() {
+    async function cargarDatosDirector() {
       try {
-        const datosResponsable = await getResponsableID(id);
-        IdResponsableRef.current.value = datosResponsable.idDirector;
-        IDUsuRef.current.value = datosResponsable.userId; // Cambiado el nombre del campo
-        StatusRef.current.value = datosResponsable.status; // Cambiado el nombre del campo
+        const datosDirector = await getDirectorID(id);
+        IdDirectorRef.current.value = datosDirector.idDirector;
+        IDUsuRef.current.value = datosDirector.userId; // Cambiado el nombre del campo
+        StatusRef.current.value = datosDirector.status; // Cambiado el nombre del campo
 
       } catch (error) {
         console.error(error);
       }
     }
 
-    cargarDatosResponsable();
+    cargarDatosDirector();
   }, [id]);
 
   return (
@@ -65,7 +65,7 @@ const EditarDirector = () => {
           <input
             type="text"
             id="idDirector"
-            ref={IdResponsableRef}
+            ref={IdDirectorRef}
             required
             className="edit-input-field"
           />

@@ -29,6 +29,8 @@ import CrearDirector from './pages/Director/crearDirector';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CrearResponsable from './pages/Responsable/crearResponsable';
+import { Componente } from './pages/Dashboard/dashboard';
+import Login from './pages/Login/login';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -63,7 +65,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/listDirector' element={<ListaDirector/>}/>
         <Route path='/agregar-director-admin' element={<CrearDirector/>}/>
 
+        <Route path='/dashboard' element={<Componente/>}/>
 
+        <Route path='/login' element={<Login/>}/>
         </Route>
         
         </Routes>

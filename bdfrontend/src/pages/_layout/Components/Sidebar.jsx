@@ -19,7 +19,7 @@ const Sidebar = ({ children }) => {
     const navLinks = [
         { to: 'home', text: 'Home',  },
         
-        { to: 'Login', text: 'Iniciar Sesion' },
+        { to: 'login', text: 'Iniciar Sesion' },
 
         { to: 'listRes', text: 'Responsable'},
 
@@ -33,7 +33,9 @@ const Sidebar = ({ children }) => {
 
         { to: 'listPoblacion', text: 'Poblacion'},
 
-        { to: 'listDirector', text: 'Director'}
+        { to: 'listDirector', text: 'Director'},
+
+        { to: 'dashboard', text: 'Dashboard'}
     ];
 
     return (

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState(null);
   const [loginMessage, setLoginMessage] = useState('');
@@ -21,10 +21,10 @@ function Login() {
     e.preventDefault();
 
     try {
-      axios.defaults.baseURL = 'https://localhost:44325/api/';
+      axios.defaults.baseURL = 'https://localhost:7293/api/Authentication/';
 
       const response = await axios.post('login', {
-        email,
+        username,
         password,
       });
 
@@ -36,7 +36,7 @@ function Login() {
         // Establecer un temporizador para ocultar el contenido después de 1 segundo
         setTimeout(() => {
           setShowContent(false);
-          navigate('/dashboard', { replace: true, state: { logged: true, email } });
+          navigate('/dashboard', { replace: true, state: { logged: true, username } });
         }, 1000);
       } else {
         setLoginMessage('Credenciales incorrectas');
@@ -63,13 +63,13 @@ function Login() {
           )}
           <form onSubmit={handleSubmit}>
             <div className="form-group" style={styles.formGroup}>
-              <label style={styles.label}>Correo Electrónico</label>
+              <label style={styles.label}>Username</label>
               <input
-                type="email"
+                type="text"
                 id="email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 style={styles.input}
               />
@@ -105,7 +105,7 @@ const styles = {
     border: '1px solid #ccc',
     borderRadius: '5px',
     boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
-    backgroundColor: '#fff',
+    backgroundColor: '#black',
     padding: '20px',
   },
   title: {
@@ -120,7 +120,7 @@ const styles = {
     marginBottom: '5px',
   },
   input: {
-    width: '100%',
+    width: '95%',
     padding: '10px',
     fontSize: '16px',
     border: '1px solid #ccc',

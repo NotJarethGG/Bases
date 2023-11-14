@@ -22,10 +22,21 @@ export const eliminarPais= async (id) => {
     } 
 };
 
-export const getPaisID = async (id) => { 
-    let data = await api.get(`Pais/${id}`).then(result => result.data);
-    return data;
-};
+// export const getPaisID = async (id) => { 
+//     let data = await api.get(`Pais/${id}`).then(result => result.data);
+//     return data;
+// };
+
+export const getPaisID = async (id) => {
+    try {
+      const response = await api.get(`Pais/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error al obtener datos del país con ID ${id}:`, error);
+      throw error; // Puedes manejar el error de otra manera según tus necesidades
+    }
+  };
+  
 
 export const updatePais = async (newData) => { 
     

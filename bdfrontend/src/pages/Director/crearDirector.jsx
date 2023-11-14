@@ -5,7 +5,7 @@ import { createDirector } from '../../services/DirectorServicio';
 
 const CrearDirector = () => {
   const queryClient = useQueryClient();
-  const IDDirectorRef = useRef(null);
+  // const IDDirectorRef = useRef(null);
   const IDUsuarioRef = useRef(null);
   const StatusRef = useRef(null);
 
@@ -25,7 +25,7 @@ const CrearDirector = () => {
     // Realiza la validación del formulario aquí
 
     let newDirector = {
-      idDirector: IDDirectorRef.current.value,
+      // idDirector: IDDirectorRef.current.value,
       userId: IDUsuarioRef.current.value,
       status: StatusRef.current.value,
     };
@@ -41,7 +41,7 @@ const CrearDirector = () => {
     <div className="CrearSoli">
       <h2>Crear Director</h2>
       <form onSubmit={handleRegistro}>
-        <div className='div-input-tipo'>
+        {/* <div className='div-input-tipo'>
           <label htmlFor="idDirector">ID Director</label>
           <input
             type="text"
@@ -49,7 +49,7 @@ const CrearDirector = () => {
             ref={IDDirectorRef}
             required
           />
-        </div>
+        </div> */}
         <div className='div-input-tipo'>
           <label htmlFor="idUsuario">ID Usuario:</label>
           <input

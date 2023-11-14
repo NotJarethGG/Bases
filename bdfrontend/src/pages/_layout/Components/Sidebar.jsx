@@ -18,12 +18,13 @@ const Sidebar = ({ children }) => {
     { to: 'home', text: 'Home' },
     { to: 'login', text: 'Iniciar Sesión', visible: !isAuthenticated },
     { to: 'listRes', text: 'Responsable', visible: isAuthenticated },
+    { to: 'listDirector', text: 'Director', visible: isAuthenticated },
     { to: 'listaPais', text: 'Paises', visible: isAuthenticated },
     { to: 'listSede', text: 'Sedes', visible: isAuthenticated },
     { to: 'listActuaciones', text: 'Actuaciones', visible: isAuthenticated },
     { to: 'listProyectos', text: 'Proyectos', visible: isAuthenticated },
     { to: 'listPoblacion', text: 'Poblacion', visible: isAuthenticated },
-    { to: 'listDirector', text: 'Director', visible: isAuthenticated },
+    
   ];
 
   return (

@@ -43,7 +43,8 @@ const EditarPais = () => {
     async function cargarDatosPais() {
       try {
         const datosPais = await getPaisID(id);
-        IdPais.current.value = datosPais.idPais; // Campo IdPais
+        IdPais.current.value = datosPais.idPais ? datosPais.idPais.toString() : '';
+
         NombrePais.current.value = datosPais.nombre;
         StatusPais.current.value = datosPais.status;
 
@@ -104,3 +105,4 @@ const EditarPais = () => {
 };
 
 export default EditarPais;
+

@@ -5,7 +5,6 @@ import { createPoblacion } from '../../services/PoblacionServicio';
 
 const CrearPoblacion = () => {
   const queryClient = useQueryClient();
-  const IdPoblacionRef = useRef(null);
   const NombreRef = useRef(null);
   const IdPaisRef = useRef(null);
   const NumHabitantesRef = useRef(null);
@@ -28,7 +27,6 @@ const CrearPoblacion = () => {
     // Realiza la validación del formulario aquí
 
     let newPoblacion = {
-      idPoblacion: IdPoblacionRef.current.value,
       nombre: NombreRef.current.value,
       idPais: IdPaisRef.current.value,
       numHabitantes: NumHabitantesRef.current.value,
@@ -47,15 +45,6 @@ const CrearPoblacion = () => {
     <div className="CrearSoli">
       <h2>Crear Población</h2>
       <form onSubmit={handleRegistro}>
-        <div className='div-input-tipo'>
-          <label htmlFor="idPoblacion">ID de la Población:</label>
-          <input
-            type="text"
-            id="idPoblacion"
-            ref={IdPoblacionRef}
-            required
-          />
-        </div>
         <div className='div-input-tipo'>
           <label htmlFor="nombre">Nombre:</label>
           <input

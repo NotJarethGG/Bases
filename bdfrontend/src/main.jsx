@@ -46,7 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Routes>
 
         <Route path="/" element={<Layout />}>
-        {/* <Route path="/home" element={<Home />}   */}
+          
         <Route path="/listRes" element={<ListaResponsable/>}/>
         <Route path='/agregar-responsable-admin' element={<CrearResponsable/>}/>
         <Route path="/Responsable/:id" element={<EditarResponsable/>}/>
@@ -78,6 +78,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/dashboard' element={<Componente/>}/>
 
         <Route path='/login' element={<Login/>}/>
+
+        <Route path='/dashboard/login' element={<Login/>}/>
         </Route>
         
         </Routes>

@@ -6,7 +6,6 @@ import { createPoblacionActuacion } from '../../services/PoblacionActuacionServi
 const CrearPoblacionActuacion = () => {
   const queryClient = useQueryClient();
   
-  const IdPoblacionActuacionRef = useRef(null);
   const IdPoblacionRef = useRef(null);
   const IdActuacionRef = useRef(null);
 
@@ -26,7 +25,6 @@ const CrearPoblacionActuacion = () => {
     // Realiza la validación del formulario aquí
 
     let newPoblacionActuacion = {
-      idPoblacionActuacion: IdPoblacionActuacionRef.current.value,
       idPoblacion: IdPoblacionRef.current.value,
       idActuacion: IdActuacionRef.current.value,
     };
@@ -42,15 +40,6 @@ const CrearPoblacionActuacion = () => {
     <div className="CrearSoli">
       <h2>Crear Población Actuacion</h2>
       <form onSubmit={handleRegistro}>
-        <div className='div-input-tipo'>
-          <label htmlFor="idPoblacionActuacion">ID de la Población Actuación:</label>
-          <input
-            type="text"
-            id="idPoblacionActuacion"
-            ref={IdPoblacionActuacionRef}
-            required
-          />
-        </div>
         <div className='div-input-tipo'>
           <label htmlFor="idPoblacion">ID de la Población:</label>
           <input

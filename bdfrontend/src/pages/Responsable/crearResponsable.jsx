@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const CrearResponsable = () => {
   const queryClient = useQueryClient();
-  const IDResponsableRef = useRef(null);
+  // const IDResponsableRef = useRef(null);
   const IDUsuarioRef = useRef(null);
   const StatusRef = useRef(null);
 
@@ -25,7 +25,7 @@ const CrearResponsable = () => {
     // Realiza la validación del formulario aquí
 
     let newResponsable = {
-      idResponsable: IDResponsableRef.current.value,
+      // idResponsable: IDResponsableRef.current.value,
       userId: IDUsuarioRef.current.value,
       status: StatusRef.current.value,
     };
@@ -41,7 +41,7 @@ const CrearResponsable = () => {
     <div className="CrearSoli">
       <h2>Crear Responsable</h2>
       <form onSubmit={handleRegistro}>
-        <div className='div-input-tipo'>
+        {/* <div className='div-input-tipo'>
           <label htmlFor="IDResponsable">ID Responsable:</label>
           <input
             type="text"
@@ -49,7 +49,7 @@ const CrearResponsable = () => {
             ref={IDResponsableRef}
             required
           />
-        </div>
+        </div> */}
         <div className='div-input-tipo'>
           <label htmlFor="IDUsuario">ID Usuario:</label>
           <input

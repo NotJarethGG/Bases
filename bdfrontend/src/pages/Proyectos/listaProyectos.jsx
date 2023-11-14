@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,6 +13,7 @@ const ListaProyectos = () => {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchId, setSearchId] = useState(""); // Nuevo estado para el filtro por ID
   const itemsPerPage = 10;
 
   const handlePageChange = (selectedPage) => {
@@ -33,21 +35,38 @@ const ListaProyectos = () => {
     }
   };
 
+  const handleSearchChange = (event) => {
+    setSearchId(event.target.value);
+  };
+
   if (isLoading) return <div className="loading">Loading...</div>;
 
   if (isError) return <div className="error">Error</div>;
 
+  // Aplicar el filtro por ID
+  const filteredData = searchId
+    ? data.filter((proyecto) => String(proyecto.idProyecto) === searchId)
+    : data;
+
   const offset = currentPage * itemsPerPage;
-  const pageCount = Math.ceil(data.length / itemsPerPage);
-  const currentData = data.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
+  const currentData = filteredData.slice(offset, offset + itemsPerPage);
 
   return (
     <>
       <div className="type-registration">
-        <h1 className="Namelist">Registro de Proyetos</h1>
+        <h1 className="Namelist">Registro de Proyectos</h1>
+        
         <Link to="/agregar-proyecto-admin">
           <button className="btnAgregarDesdeAdmin">Crear Proyecto</button>
         </Link>
+        {/* Input para filtrar por ID */}
+        <input
+          type="text"
+          placeholder="Buscar por ID"
+          value={searchId}
+          onChange={handleSearchChange}
+        />
         <div className="Div-Table">
           <table className="Table">
             <thead>

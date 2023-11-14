@@ -5,7 +5,6 @@ import { createProyecto } from '../../services/ProyectosServicio';
 
 const CrearProyecto = () => {
   const queryClient = useQueryClient();
-  const IdProyectoRef = useRef(null);
   const TituloRef = useRef(null);
   const FechaInicioRef = useRef(null);
   const FechaFinRef = useRef(null);
@@ -30,7 +29,6 @@ const CrearProyecto = () => {
     // Realiza la validación del formulario aquí
 
     let newProyecto = {
-      idProyecto: IdProyectoRef.current.value,
       titulo: TituloRef.current.value,
       fecha_Inicio: FechaInicioRef.current.value,
       fecha_Fin: FechaFinRef.current.value,
@@ -51,15 +49,6 @@ const CrearProyecto = () => {
     <div className="CrearSoli">
       <h2>Crear Proyecto</h2>
       <form onSubmit={handleRegistro}>
-        <div className='div-input-tipo'>
-          <label htmlFor="idProyecto">ID del Proyecto:</label>
-          <input
-            type="text"
-            id="idProyecto"
-            ref={IdProyectoRef}
-            required
-          />
-        </div>
         <div className='div-input-tipo'>
           <label htmlFor="titulo">Título:</label>
           <input

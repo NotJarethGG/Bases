@@ -47,7 +47,7 @@ const EditarActuacion = () => {
   useEffect(() => {
     async function cargarDatosActuacion() {
       try {
-        const datosActuacion = await getActuacionById(id);
+        const datosActuacion = await getActuacionID(id);
         IdActuacionRef.current.value = datosActuacion.idActuacion;
         PresupuestoRef.current.value = datosActuacion.presupuesto;
         NombreActuacionRef.current.value = datosActuacion.nombre;

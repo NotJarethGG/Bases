@@ -1,141 +1,133 @@
+// import { useState } from 'react';
+// import axios from 'axios';
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
+// const Login = () => {
+//   const [username, setUsername] = useState('');
+//   const [password, setPassword] = useState('');
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await axios.post('https://localhost:7293/api/Authentication/login', {
+//         username: username,
+//         password: password,
+//       });
+
+//       // Almacenar el token en localStorage
+//       localStorage.setItem('token', response.data);
+
+//       // Mostrar notificación de inicio de sesión exitoso
+//       toast.success('Inicio de sesión exitoso');
+
+//     } catch (error) {
+//       // Mostrar notificación de credenciales incorrectas
+//       toast.error('Usuario o contraseña incorrectos');
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h2>Iniciar Sesión</h2>
+//       <form onSubmit={handleLogin}>
+//         <label>
+//           Usuario:
+//           <input
+//             type="text"
+//             value={username}
+//             onChange={(e) => setUsername(e.target.value)}
+//           />
+//         </label>
+//         <br />
+//         <label>
+//           Contraseña:
+//           <input
+//             type="password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//           />
+//         </label>
+//         <br />
+//         <button type="submit">Iniciar Sesión</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Login;
+
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Login() {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState(null);
-  const [loginMessage, setLoginMessage] = useState('');
-  const [showContent, setShowContent] = useState(true); // Estado para mostrar/ocultar contenido
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(JSON.parse(storedToken));
-    }
-  }, []);
-
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      axios.defaults.baseURL = 'https://localhost:7293/api/Authentication/';
-
-      const response = await axios.post('login', {
-        username,
-        password,
+      const response = await axios.post('https://localhost:7293/api/Authentication/login', {
+        username: username,
+        password: password,
       });
 
-      if (response.data.status === 1) {
-        localStorage.setItem('token', JSON.stringify(response.data));
-        setToken(response.data.token);
-        setLoginMessage('Logueado exitosamente');
+      // Almacenar el token en localStorage
+      localStorage.setItem('token', response.data);
 
-        // Establecer un temporizador para ocultar el contenido después de 1 segundo
-        setTimeout(() => {
-          setShowContent(false);
-          navigate('/dashboard', { replace: true, state: { logged: true, username } });
-        }, 1000);
-      } else {
-        setLoginMessage('Credenciales incorrectas');
-      }
+      // Mostrar notificación de inicio de sesión exitoso
+      toast.success('Inicio de sesión exitoso');
+
     } catch (error) {
-      console.error("Error en la solicitud:", error);
+      // Mostrar notificación de credenciales incorrectas
+      toast.error('Usuario o contraseña incorrectos');
     }
   };
 
+  useEffect(() => {
+    // Configurar un temporizador para eliminar el token después de 15 minutos
+    const tokenTimeout = setTimeout(() => {
+      // Eliminar el token del localStorage
+      localStorage.removeItem('token');
+      // Mostrar notificación de cierre de sesión automático
+      toast.info('La sesión ha expirado automáticamente');
+    }, 15 * 60 * 1000); // 15 minutos en milisegundos
+
+    // Limpiar el temporizador cuando el componente se desmonta o cuando se vuelve a llamar a useEffect
+    return () => clearTimeout(tokenTimeout);
+  }, []); // El segundo parámetro vacío significa que este efecto solo se ejecuta una vez al montar el componente
+
   return (
-    <div className="Login" style={styles.container}>
-      {showContent && token === null ? (
-        <>
-          <h2 style={styles.title}>Iniciar Sesión</h2>
-          {loginMessage && (
-            <p
-              style={{
-                color: loginMessage === 'Logueado exitosamente' ? 'green' : 'red',
-                marginBottom: '10px',
-              }}
-            >
-              {loginMessage}
-            </p>
-          )}
-          <form onSubmit={handleSubmit}>
-            <div className="form-group" style={styles.formGroup}>
-              <label style={styles.label}>Username</label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                style={styles.input}
-              />
-            </div>
-            <div className="form-group" style={styles.formGroup}>
-              <label style={styles.label}>Contraseña</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                style={styles.input}
-              />
-              <div>
-                <button type="submit" style={styles.button}>
-                  Iniciar Sesión
-                </button>
-              </div>
-            </div>
-          </form>
-        </>
-      ) : null}
+    <div>
+      <h2>Iniciar Sesión</h2>
+      <form onSubmit={handleLogin}>
+        <label>
+          Usuario:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Contraseña:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Iniciar Sesión</button>
+      </form>
     </div>
   );
-}
-
-const styles = {
-  container: {
-    maxWidth: '400px',
-    margin: '0 auto',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
-    backgroundColor: '#black',
-    padding: '20px',
-  },
-  title: {
-    textAlign: 'center',
-    marginBottom: '20px',
-  },
-  formGroup: {
-    marginBottom: '15px',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '5px',
-  },
-  input: {
-    width: '95%',
-    padding: '10px',
-    fontSize: '16px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-  },
-  button: {
-    width: '100%',
-    padding: '10px',
-    fontSize: '16px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
 };
 
 export default Login;

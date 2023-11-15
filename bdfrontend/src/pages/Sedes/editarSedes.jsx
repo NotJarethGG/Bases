@@ -14,6 +14,7 @@ const EditarSede = () => {
   const telefonoRef = useRef(null);
   const idDirectorRef = useRef(null);
   const statusRef = useRef(null);
+  const sedeIDRef = useRef(null);
 
   const mutationKey = `Sede/${id}`;
   const mutation = useMutation(mutationKey, updateSede, {
@@ -25,6 +26,7 @@ const EditarSede = () => {
 
     let newData = {
       id: id,
+      idSede: sedeIDRef.current.value,
       ciudad: ciudadRef.current.value,
       direccion: direccionRef.current.value,
       idPais: idPaisRef.current.value,
@@ -69,7 +71,17 @@ const EditarSede = () => {
       <h1 className="edit-tipo">Editar Sede</h1>
       <p className="edit-id">ID de la Sede a editar: {id}</p>
       <form onSubmit={handleRegistro} className="edit-form">
-        <div className="edit-input">
+      <div className="edit-input">
+          <label htmlFor="sede" className="edit-label">Confirme id sede a editar:</label>
+          <input
+            type="text"
+            id="sede"
+            ref={sedeIDRef}
+            required
+            className="edit-input-field"
+          />
+        </div>
+       <div className="edit-input">
           <label htmlFor="ciudad" className="edit-label">Ciudad:</label>
           <input
             type="text"

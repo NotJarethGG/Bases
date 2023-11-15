@@ -76,7 +76,7 @@ const EditarProyecto = () => {
       <p className="edit-id">ID del Proyecto a editar: {id}</p>
       <form onSubmit={handleRegistro} className="edit-form">
         <div className="edit-input">
-          <label htmlFor="idProyecto" className="edit-label">ID del Proyecto:</label>
+          <label htmlFor="idProyecto" className="edit-label">Confirme el ID del Proyecto:</label>
           <input
             type="text"
             id="idProyecto"

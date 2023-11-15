@@ -24,6 +24,7 @@ const Sidebar = ({ children }) => {
     { to: 'listActuaciones', text: 'Actuaciones', visible: isAuthenticated },
     { to: 'listProyectos', text: 'Proyectos', visible: isAuthenticated },
     { to: 'listPoblacion', text: 'Poblacion', visible: isAuthenticated },
+    { to: 'listaPoblacionActuacion', text: 'PoblacionActuacion', visible: isAuthenticated},
     
   ];
 

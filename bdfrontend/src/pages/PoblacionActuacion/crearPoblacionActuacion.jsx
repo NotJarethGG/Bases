@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { toast, ToastContainer } from 'react-toastify';
-import { createPoblacionActuacion } from '../../services/PoblacionActuacionServicio';
+import { createPoblacionActuacion } from '../../services/PoblacionActuacion';
 
 const CrearPoblacionActuacion = () => {
   const queryClient = useQueryClient();
@@ -9,9 +9,9 @@ const CrearPoblacionActuacion = () => {
   const IdPoblacionRef = useRef(null);
   const IdActuacionRef = useRef(null);
 
-  const mutation = useMutation("poblacionActuacion", createPoblacionActuacion, {
-    onSettled: () => queryClient.invalidateQueries("poblacionActuacion"),
-    mutationKey: "poblacionActuacion",
+  const mutation = useMutation("Poblacion_Actuacion", createPoblacionActuacion, {
+    onSettled: () => queryClient.invalidateQueries("Poblacion_Actuacion"),
+    mutationKey: "Poblacion_Actuacion",
     onError: (error) => {
       toast.error('Error al guardar: ' + error.message, {
         position: toast.POSITION.TOP_RIGHT

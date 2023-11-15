@@ -32,6 +32,6 @@ export const updatePoblacion = async (newData) => {
     
     console.log(newData);    
     // En este punto, `newData` debe ser un objeto con los datos de la reserva  a actualizar
-    let data = await api.put(`/Poblacion/${newData.i}`, newData).then(result => result.data);
+    let data = await api.put(`/Poblacion/${newData.id}`, newData).then(result => result.data);
     return data;
 };

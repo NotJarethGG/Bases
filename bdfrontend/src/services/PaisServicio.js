@@ -29,20 +29,21 @@ export const eliminarPais= async (id) => {
 
 export const getPaisID = async (id) => {
     try {
-      const response = await api.get(`Pais/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error al obtener datos del país con ID ${id}:`, error);
-      throw error; // Puedes manejar el error de otra manera según tus necesidades
-    }
-  };
-  
+        const response = await api.get(`Pais/${id}`);
+        console.log("Respuesta completa del servicio:", response);
+        return response.data;
+        } catch (error) {
+        console.error(`Error al obtener datos del país con ID ${id}:`, error);
+        throw error;
+        }
+    };
+
 
 export const updatePais = async (newData) => { 
     
     console.log(newData);    
     // En este punto, `newData` debe ser un objeto con los datos de la reserva  a actualizar
-    let data = await api.put(`/Pais/${newData.i}`, newData).then(result => result.data);
+    let data = await api.put(`/Pais/${newData.id}`, newData).then(result => result.data);
     return data;
 };
 

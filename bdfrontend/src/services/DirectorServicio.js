@@ -59,6 +59,6 @@ export const updateDirector = async (newData) => {
   
   console.log(newData);    
   // En este punto, `newData` debe ser un objeto con los datos de la reserva  a actualizar
-  let data = await api.put(`/Director/${newData.i}`, newData).then(result => result.data);
+  let data = await api.put(`/Director/${newData.id}`, newData).then(result => result.data);
   return data;
 };

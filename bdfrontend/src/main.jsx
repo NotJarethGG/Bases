@@ -36,7 +36,8 @@ import EditarActuacion from './pages/Actuaciones/editarActuaciones';
 import EditarProyecto from './pages/Proyectos/editarProyectos';
 import EditarPoblacion from './pages/Poblacion/editarPoblacion';
 import EditarDirector from './pages/Director/editarDirector';
-//import ListaPoblacionActuacion from './pages/PoblacionActuacion/listaPoblacionActuacion';
+import ListaPoblacionActuacion from './pages/PoblacionActuacion/listaPoblacionActuacion';
+import CrearPoblacionActuacion from './pages/PoblacionActuacion/crearPoblacionActuacion';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -76,13 +77,19 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/agregar-director-admin' element={<CrearDirector/>}/>
         <Route path="/Director/:id" element={<EditarDirector/>}/>
 
-        {/* <Route path='/listaPoblacionActuacion' element={<ListaPoblacionActuacion/>}/> */}
+        
 
         <Route path='/dashboard' element={<Componente/>}/>
 
         <Route path='/login' element={<Login/>}/>
 
         <Route path='/dashboard/login' element={<Login/>}/>
+
+        <Route path='/listaPoblacionActuacion' element={<ListaPoblacionActuacion/>}/>
+        <Route path='/agregar-poblacionActuacion-admin' element={<CrearPoblacionActuacion/>}/>
+        <Route path="/Poblacion_Actuacion/:id" element={<EditarDirector/>}/>
+       
+
         </Route>
         
         </Routes>

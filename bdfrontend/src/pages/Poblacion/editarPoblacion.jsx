@@ -73,7 +73,7 @@ const EditarPoblacion = () => {
       <p className="edit-id">ID de la Población a editar: {id}</p>
       <form onSubmit={handleRegistro} className="edit-form">
         <div className="edit-input">
-          <label htmlFor="idPoblacion" className="edit-label">ID de la Población:</label>
+          <label htmlFor="idPoblacion" className="edit-label">Confirme el ID de la Población:</label>
           <input
             type="text"
             id="idPoblacion"

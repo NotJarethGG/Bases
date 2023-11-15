@@ -68,7 +68,7 @@ const EditarActuacion = () => {
       <p className="edit-id">ID de la Actuacion a editar: {id}</p>
       <form onSubmit={handleRegistro} className="edit-form">
         <div className="edit-input">
-          <label htmlFor="idActuacion" className="edit-label">ID de la Actuacion:</label>
+          <label htmlFor="idActuacion" className="edit-label">Confirme el ID del la Actuacion:</label>
           <input
             type="text"
             id="idActuacion"

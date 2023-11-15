@@ -61,7 +61,7 @@ const EditarDirector = () => {
       <p className="edit-id">ID del Director a editar: {id}</p>
       <form onSubmit={handleRegistro} className="edit-form">
         <div className="edit-input">
-          <label htmlFor="idDirector" className="edit-label">IdDirector:</label>
+          <label htmlFor="idDirector" className="edit-label">Confirme el ID del Director:</label>
           <input
             type="text"
             id="idDirector"

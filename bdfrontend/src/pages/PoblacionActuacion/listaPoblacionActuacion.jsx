@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { getPoblacionActuacion, eliminarPoblacionActuacion } from "../../services/PoblacionActuacionServicio";
+import { getPoblacionActuacion, eliminarPoblacionActuacion } from "../../services/PoblacionActuacion";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 
 const ListaPoblacionActuacion = () => {
-    const { data, isLoading, isError, refetch } = useQuery("PoblacionActuacion", getPoblacionActuacion, {
+    const { data, isLoading, isError, refetch } = useQuery("Poblacion_Actuacion", getPoblacionActuacion, {
         enabled: true,
     });
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ListaPoblacionActuacion = () => {
     };
 
     const handleEditPoblacionActuacion = (id) => {
-        navigate(`/PoblacionActuacion/${id}`);
+        navigate(`/Poblacion_Actuacion/${id}`);
     };
 
     const handleDeletePoblacionActuacion = async (id) => {
@@ -63,7 +63,7 @@ const ListaPoblacionActuacion = () => {
         <>
         <div className="type-registration">
             <h1 className="Namelist">Registro de PoblacionActuacion</h1>
-            <Link to="/agregar-director-admin">
+            <Link to="/agregar-poblacionActuacion-admin">
             <button className="btnAgregarDesdeAdmin">Crear PoblacionActuacion</button>
             </Link>
             <div className="Div-Table">
@@ -79,21 +79,21 @@ const ListaPoblacionActuacion = () => {
                 <tbody>
                 {currentData.map((poblacionActuacion) => (
                     <tr key={poblacionActuacion.idPoblacionActuacion}>
-                    <td>{poblacionActuacion.idPoblacionActuacion}</td>
+                    <td>{poblacionActuacion.idPoblacion_Actuacion}</td>
                     <td>{poblacionActuacion.idPoblacion}</td>
                     <td>{poblacionActuacion.idActuacion}</td>
                     <td>
                     <button
                         onClick={() => {
                             
-                            handleDeletePoblacionActuacion(poblacionActuacion.idPoblacionActuacion);
+                            handleDeletePoblacionActuacion(poblacionActuacion.idPoblacion_Actuacion);
                         }}
                         className="btnEliminar"
                         >
                         Borrar
                         </button>
                         <button
-                        onClick={() =>handleEditPoblacionActuacion(poblacionActuacion.idPoblacionActuacion)}
+                        onClick={() =>handleEditPoblacionActuacion(poblacionActuacion.idPoblacion_Actuacion)}
                         className="btnModificar"
                         >
                         Editar

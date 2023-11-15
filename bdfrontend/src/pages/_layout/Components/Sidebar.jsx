@@ -25,7 +25,15 @@ const Sidebar = ({ children }) => {
     { to: 'listProyectos', text: 'Proyectos', visible: isAuthenticated },
     { to: 'listPoblacion', text: 'Poblacion', visible: isAuthenticated },
     { to: 'listaPoblacionActuacion', text: 'PoblacionActuacion', visible: isAuthenticated},
-    
+    { to: 'consultaPAP', text: 'Consulta Proyecto-Actuacion-Poblacion', visible: !isAuthenticated},
+    { to: 'consultaIPP', text: 'Consulta Inversion-Proyecto-Poblacion', visible: !isAuthenticated},
+    { to: 'consultaPPH', text: 'Consulta Proyecto-Poblacion-Habitantes', visible: !isAuthenticated},
+    { to: 'consultaIPP', text: 'Consulta Inversion-Proyecto-Poblacion', visible: !isAuthenticated},
+    { to: 'consultaCSP', text: 'Consulta cantidad de sedes por pais', visible: !isAuthenticated},
+    { to: 'consultaCPP', text: 'Consulta cantidad de proyectos por pais', visible: !isAuthenticated},
+    { to: 'consultaCPS', text: 'Consulta cantidad de proyectos por sede', visible: !isAuthenticated},
+    // { to: 'consultaCSPN', text: 'Consulta cantidad de sedes por pais nombre', visible: !isAuthenticated},
+
   ];
 
   return (

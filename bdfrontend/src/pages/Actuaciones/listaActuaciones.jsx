@@ -2,8 +2,8 @@
 // import { useQuery } from "react-query";
 // import { useNavigate, Link } from "react-router-dom";
 // import "react-toastify/dist/ReactToastify.css";
-// import { getActuacion, eliminarActuacion } from "../../services/ActuacionesServicio";
 // import ReactPaginate from "react-paginate";
+// import { getActuacion, eliminarActuacion } from "../../services/ActuacionesServicio";
 
 // const ListaActuacion = () => {
 //   const { data, isLoading, isError, refetch } = useQuery("Actuacion", getActuacion, {
@@ -12,6 +12,7 @@
 //   const navigate = useNavigate();
 
 //   const [currentPage, setCurrentPage] = useState(0);
+//   const [searchId, setSearchId] = useState(""); // Nuevo estado para el filtro por ID
 //   const itemsPerPage = 10;
 
 //   const handlePageChange = (selectedPage) => {
@@ -33,21 +34,38 @@
 //     }
 //   };
 
+//   const handleSearchChange = (event) => {
+//     setSearchId(event.target.value);
+//   };
+
 //   if (isLoading) return <div className="loading">Loading...</div>;
 
 //   if (isError) return <div className="error">Error</div>;
 
+//   // Aplicar el filtro por ID
+//   const filteredData = data.filter((actuacion) => {
+//     return String(actuacion.idActuacion) === searchId;
+//   });
+
 //   const offset = currentPage * itemsPerPage;
-//   const pageCount = Math.ceil(data.length / itemsPerPage);
-//   const currentData = data.slice(offset, offset + itemsPerPage);
+//   const pageCount = Math.ceil(filteredData.length / itemsPerPage);
+//   const currentData = searchId ? filteredData : data.slice(offset, offset + itemsPerPage);
 
 //   return (
 //     <>
 //       <div className="type-registration">
 //         <h1 className="Namelist">Registro de Actuaciones</h1>
+        
 //         <Link to="/agregar-actuacion-admin">
 //           <button className="btnAgregarDesdeAdmin">Crear Actuacion</button>
 //         </Link>
+//         {/* Input para filtrar por ID */}
+//         <input
+//           type="text"
+//           placeholder="Buscar por ID"
+//           value={searchId}
+//           onChange={handleSearchChange}
+//         />
 //         <div className="Div-Table">
 //           <table className="Table">
 //             <thead>
@@ -57,7 +75,7 @@
 //                 <th>Nombre</th>
 //                 <th>Descripcion</th>
 //                 <th>ID Proyecto</th>
-//                 <th>Status</th> {/* Asegúrate de que el nombre del campo sea "Status" */}
+//                 <th>Status</th>
 //                 <th>Acciones</th>
 //               </tr>
 //             </thead>
@@ -107,12 +125,14 @@
 // };
 
 // export default ListaActuacion;
-import { useState } from "react";
+
+import {  useState, useEffect } from 'react';
 import { useQuery } from "react-query";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
 import { getActuacion, eliminarActuacion } from "../../services/ActuacionesServicio";
+import { getProyecto} from "../../services/ProyectosServicio";
 
 const ListaActuacion = () => {
   const { data, isLoading, isError, refetch } = useQuery("Actuacion", getActuacion, {
@@ -120,18 +140,34 @@ const ListaActuacion = () => {
   });
   const navigate = useNavigate();
 
+  const [proyectos, setProyectos] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(0);
   const [searchId, setSearchId] = useState(""); // Nuevo estado para el filtro por ID
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const fetchProyectos = async () => {
+      try {
+        const data = await getProyecto();
+        setProyectos(data);
+      } catch (error) {
+        console.error('Error al obtener la lista de países:', error);
+      }
+    };
+
+    fetchProyectos();
+      // Llama a la función para obtener la lista de directores al montar el componente
+  }, []);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
   };
 
   const handleEditActuacion = (id) => {
-    navigate(`/Actuacion/${id}`);
-  };
-
+        navigate(`/Actuacion/${id}`);
+      };
+      
   const handleDeleteActuacion = async (id) => {
     try {
       await eliminarActuacion(id);
@@ -183,7 +219,7 @@ const ListaActuacion = () => {
                 <th>Presupuesto</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
-                <th>ID Proyecto</th>
+                <th>Proyecto</th>
                 <th>Status</th>
                 <th>Acciones</th>
               </tr>
@@ -195,7 +231,7 @@ const ListaActuacion = () => {
                   <td>{actuacion.presupuesto}</td>
                   <td>{actuacion.nombre}</td>
                   <td>{actuacion.descripcion}</td>
-                  <td>{actuacion.idProyecto}</td>
+                  <td>{proyectos.find((proyecto) => proyecto.idProyecto === actuacion.idProyecto)?.titulo || "ProyectoNoEncontrado"}</td>
                   <td>{actuacion.status}</td>
                   <td>
                     <button

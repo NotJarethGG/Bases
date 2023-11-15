@@ -38,6 +38,14 @@ import EditarPoblacion from './pages/Poblacion/editarPoblacion';
 import EditarDirector from './pages/Director/editarDirector';
 import ListaPoblacionActuacion from './pages/PoblacionActuacion/listaPoblacionActuacion';
 import CrearPoblacionActuacion from './pages/PoblacionActuacion/crearPoblacionActuacion';
+import EditarPobAct from './pages/PoblacionActuacion/editarPoblacionActuacion';
+import ListaConsultaPAP from './pages/Consultas/consulta-proyecto-actuaciones-en-poblacion';
+import ListaConsultaIPP from './pages/Consultas/consulta_Inversion_Proyecto_Poblacion';
+import ListaConsultaPPH from './pages/Consultas/Consulta_ProyectoPoblacionHabitantes';
+import ListaConsultaCSP from './pages/Consultas/Consulta_ContarSedesPorPais';
+import ListaConsultaCPP from './pages/Consultas/Consulta_ContarProyectosEnTodosLosPaises';
+import ListaConsultaCPS from './pages/Consultas/Consulta_ContarProyectosPorTodasSedes';
+//import ListaConsultaCSPN from './pages/Consultas/consulta_SedesPorPaisNombre';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -87,8 +95,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path='/listaPoblacionActuacion' element={<ListaPoblacionActuacion/>}/>
         <Route path='/agregar-poblacionActuacion-admin' element={<CrearPoblacionActuacion/>}/>
-        <Route path="/Poblacion_Actuacion/:id" element={<EditarDirector/>}/>
+        <Route path="/Poblacion_Actuacion/:id" element={<EditarPobAct/>}/>
        
+
+        <Route path='/consultaPAP' element={<ListaConsultaPAP/>}/>
+        <Route path='/consultaIPP' element={<ListaConsultaIPP/>}/>
+        <Route path='/consultaPPH' element={<ListaConsultaPPH/>}/>
+        <Route path='/consultaCSP' element={<ListaConsultaCSP/>}/>
+       {/* // <Route path='/consultaCSPN' element={<ListaConsultaCSPN/>}/> */}
+       <Route path='/consultaCPP' element={<ListaConsultaCPP/>}/>
+       <Route path='/consultaCPS' element={<ListaConsultaCPS/>}/>
+
 
         </Route>
         

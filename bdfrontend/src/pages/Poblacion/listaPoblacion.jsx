@@ -1,9 +1,10 @@
+
 // import { useState } from "react";
 // import { useQuery } from "react-query";
 // import { useNavigate, Link } from "react-router-dom";
 // import "react-toastify/dist/ReactToastify.css";
-// import { getPoblacion, eliminarPoblacion } from "../../services/PoblacionServicio";
 // import ReactPaginate from "react-paginate";
+// import { getPoblacion, eliminarPoblacion } from "../../services/PoblacionServicio";
 
 // const ListaPoblacion = () => {
 //   const { data, isLoading, isError, refetch } = useQuery("Poblacion", getPoblacion, {
@@ -12,6 +13,7 @@
 //   const navigate = useNavigate();
 
 //   const [currentPage, setCurrentPage] = useState(0);
+//   const [searchId, setSearchId] = useState(""); // Nuevo estado para el filtro por ID
 //   const itemsPerPage = 10;
 
 //   const handlePageChange = (selectedPage) => {
@@ -33,21 +35,38 @@
 //     }
 //   };
 
+//   const handleSearchChange = (event) => {
+//     setSearchId(event.target.value);
+//   };
+
 //   if (isLoading) return <div className="loading">Loading...</div>;
 
 //   if (isError) return <div className="error">Error</div>;
 
+//   // Aplicar el filtro por ID
+//   const filteredData = data.filter((poblacion) => {
+//     return String(poblacion.idPoblacion) === searchId;
+//   });
+
 //   const offset = currentPage * itemsPerPage;
-//   const pageCount = Math.ceil(data.length / itemsPerPage);
-//   const currentData = data.slice(offset, offset + itemsPerPage);
+//   const pageCount = Math.ceil(filteredData.length / itemsPerPage);
+//   const currentData = searchId ? filteredData : data.slice(offset, offset + itemsPerPage);
 
 //   return (
 //     <>
 //       <div className="type-registration">
-//         <h1 className="Namelist">Registro de Poblacion</h1>
+//         <h1 className="Namelist">Registro de Poblaciones</h1>
+        
 //         <Link to="/agregar-poblacion-admin">
 //           <button className="btnAgregarDesdeAdmin">Crear Poblacion</button>
 //         </Link>
+//         {/* Input para filtrar por ID */}
+//         <input
+//           type="text"
+//           placeholder="Buscar por ID"
+//           value={searchId}
+//           onChange={handleSearchChange}
+//         />
 //         <div className="Div-Table">
 //           <table className="Table">
 //             <thead>
@@ -58,7 +77,7 @@
 //                 <th>Numero Habitantes</th>
 //                 <th>Descripcion</th>
 //                 <th>Status</th>
-//                 <th>Acciones</th> 
+//                 <th>Acciones</th>
 //               </tr>
 //             </thead>
 //             <tbody>
@@ -107,13 +126,13 @@
 // };
 
 // export default ListaPoblacion;
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
 import { getPoblacion, eliminarPoblacion } from "../../services/PoblacionServicio";
+import { getPais } from "../../services/PaisServicio";
 
 const ListaPoblacion = () => {
   const { data, isLoading, isError, refetch } = useQuery("Poblacion", getPoblacion, {
@@ -124,6 +143,23 @@ const ListaPoblacion = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [searchId, setSearchId] = useState(""); // Nuevo estado para el filtro por ID
   const itemsPerPage = 10;
+
+  const [paises, setPaises] = useState([]);
+
+  useEffect(() => {
+    const fetchPaises = async () => {
+      try {
+        const paisesData = await getPais();
+        setPaises(paisesData);
+      } catch (error) {
+        console.error('Error al obtener la lista de países:', error);
+      }
+    };
+
+    fetchPaises();
+     
+  }, []);
+
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -182,7 +218,7 @@ const ListaPoblacion = () => {
               <tr>
                 <th>ID Poblacion</th>
                 <th>Nombre</th>
-                <th>ID Pais</th>
+                <th>Pais</th>
                 <th>Numero Habitantes</th>
                 <th>Descripcion</th>
                 <th>Status</th>
@@ -194,7 +230,7 @@ const ListaPoblacion = () => {
                 <tr key={poblacion.idPoblacion}>
                   <td>{poblacion.idPoblacion}</td>
                   <td>{poblacion.nombre}</td>
-                  <td>{poblacion.idPais}</td>
+                  <td>{paises.find((pais) => pais.idPais === poblacion.idPais)?.nombre || "NombrePaisNoEncontrado"}</td>
                   <td>{poblacion.numHabitantes}</td>
                   <td>{poblacion.descripcion}</td>
                   <td>{poblacion.status}</td>

@@ -32,13 +32,13 @@ const ListaConsultaCPS = () => {
   return (
     <>
       <div className="type-registration">
-        <h1 className="Namelist">Consultas sedes por pais</h1>
+        <h1 className="Namelist">Contar proyectos por sedes</h1>
         <div className="Div-Table">
           <table className="Table">
             <thead>
               <tr>
-                <th>Nombre Pais</th>
-                <th>Cantidad de sedes</th>
+                <th>Nombre sede</th>
+                <th>Cantidad de proyectos</th>
               </tr>
             </thead>
             <tbody>

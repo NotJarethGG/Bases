@@ -21,9 +21,9 @@ export const getConsultaCSP = async () => {
     return data;
 };
 
-export const getConsultaCSPN = async (searchTerm) => {
+export const getConsultaCSPN = async (nombrePais) => {
     
-        let data = await api.get(`Consultas/Consulta_ContarSedesPorPaisPorNombrePais/${searchTerm}`);
+        let data = await api.get(`Consultas/Consulta_ContarSedesPorPaisPorNombrePais/${nombrePais}`);
         return data;
 };
 

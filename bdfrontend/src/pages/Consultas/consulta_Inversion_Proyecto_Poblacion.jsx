@@ -37,9 +37,9 @@ const ListaConsultaIPP = () => {
           <table className="Table">
             <thead>
               <tr>
-                <th>ID Proyecto</th>
+                {/* <th>ID Proyecto</th> */}
                 <th>Titulo Proyecto</th>
-                <th>ID Poblacion</th>
+                {/* <th>ID Poblacion</th> */}
                 <th>Nombre Poblacion</th>
                 <th>Inversion en poblacion</th>
               </tr>
@@ -47,9 +47,9 @@ const ListaConsultaIPP = () => {
             <tbody>
               {currentData.map((consultaIPP) => (
                 <tr key={consultaIPP.idProyecto}>
-                  <td>{consultaIPP.idProyecto}</td>
+                  {/* <td>{consultaIPP.idProyecto}</td> */}
                   <td>{consultaIPP.tituloProyecto}</td>
-                  <td>{consultaIPP.idPoblacion}</td>
+                  {/* <td>{consultaIPP.idPoblacion}</td> */}
                   <td>{consultaIPP.nombrePoblacion}</td>
                   <td>{consultaIPP.inversionEnPoblacion}</td>
                 </tr>

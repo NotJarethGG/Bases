@@ -1,64 +1,3 @@
-// import { useState } from 'react';
-// import axios from 'axios';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-// const Login = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const response = await axios.post('https://localhost:7293/api/Authentication/login', {
-//         username: username,
-//         password: password,
-//       });
-
-//       // Almacenar el token en localStorage
-//       localStorage.setItem('token', response.data);
-
-//       // Mostrar notificación de inicio de sesión exitoso
-//       toast.success('Inicio de sesión exitoso');
-
-//     } catch (error) {
-//       // Mostrar notificación de credenciales incorrectas
-//       toast.error('Usuario o contraseña incorrectos');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Iniciar Sesión</h2>
-//       <form onSubmit={handleLogin}>
-//         <label>
-//           Usuario:
-//           <input
-//             type="text"
-//             value={username}
-//             onChange={(e) => setUsername(e.target.value)}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Contraseña:
-//           <input
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//           />
-//         </label>
-//         <br />
-//         <button type="submit">Iniciar Sesión</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -82,6 +21,10 @@ const Login = () => {
 
       // Mostrar notificación de inicio de sesión exitoso
       toast.success('Inicio de sesión exitoso');
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
 
     } catch (error) {
       // Mostrar notificación de credenciales incorrectas

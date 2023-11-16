@@ -45,7 +45,8 @@ import ListaConsultaPPH from './pages/Consultas/Consulta_ProyectoPoblacionHabita
 import ListaConsultaCSP from './pages/Consultas/Consulta_ContarSedesPorPais';
 import ListaConsultaCPP from './pages/Consultas/Consulta_ContarProyectosEnTodosLosPaises';
 import ListaConsultaCPS from './pages/Consultas/Consulta_ContarProyectosPorTodasSedes';
-//import ListaConsultaCSPN from './pages/Consultas/consulta_SedesPorPaisNombre';
+import Registro from './pages/Registro/registro';
+import ListaConsultaCSPN from './pages/Consultas/consulta_SedesPorPaisNombre';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -90,6 +91,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/dashboard' element={<Componente/>}/>
 
         <Route path='/login' element={<Login/>}/>
+        <Route path='/registro' element={<Registro/>}/>
 
         <Route path='/dashboard/login' element={<Login/>}/>
 
@@ -102,7 +104,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/consultaIPP' element={<ListaConsultaIPP/>}/>
         <Route path='/consultaPPH' element={<ListaConsultaPPH/>}/>
         <Route path='/consultaCSP' element={<ListaConsultaCSP/>}/>
-       {/* // <Route path='/consultaCSPN' element={<ListaConsultaCSPN/>}/> */}
+       // <Route path='/consultaCSPN' element={<ListaConsultaCSPN/>}/>
        <Route path='/consultaCPP' element={<ListaConsultaCPP/>}/>
        <Route path='/consultaCPS' element={<ListaConsultaCPS/>}/>
 

@@ -27,3 +27,12 @@ export const login = async (email, password) => {
     return { success: false, message: 'Error de red o del servidor' };
   }
 };
+
+
+export const create = async (user) => { 
+  console.log(user)
+  let data = await api.post('Authentication/registerationUser', user).then(result => result.data);
+  return data;
+};
+
+

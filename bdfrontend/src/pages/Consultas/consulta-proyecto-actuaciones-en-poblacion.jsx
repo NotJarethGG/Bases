@@ -32,17 +32,17 @@ const ListaConsultaPAP = () => {
   return (
     <>
       <div className="type-registration">
-        <h1 className="Namelist">Consultas Proyectos-Actuacion-Poblacion</h1>
+        <h1 className="Namelist">Consultas Proyectos de actuacion en poblacion</h1>
         <div className="Div-Table">
           <table className="Table">
             <thead>
               <tr>
-                <th>ID Proyecto</th>
+                {/* <th>ID Proyecto</th> */}
                 <th>Titulo Proyecto</th>
-                <th>ID Actuacion</th>
+                {/* <th>ID Actuacion</th> */}
                 <th>Nombre Actuacion</th>
                 <th>Descripcion</th>
-                <th>ID Poblacion</th>
+                {/* <th>ID Poblacion</th> */}
                 <th>Nombre Poblacion</th>
 
               </tr>
@@ -50,12 +50,12 @@ const ListaConsultaPAP = () => {
             <tbody>
               {currentData.map((consultaPAP) => (
                 <tr key={consultaPAP.idProyecto}>
-                  <td>{consultaPAP.idProyecto}</td>
+                  {/* <td>{consultaPAP.idProyecto}</td> */}
                   <td>{consultaPAP.tituloProyecto}</td>
-                  <td>{consultaPAP.idActuacion}</td>
+                  {/* <td>{consultaPAP.idActuacion}</td> */}
                   <td>{consultaPAP.nombreActuacion}</td>
                   <td>{consultaPAP.descripcionActuacion}</td>
-                  <td>{consultaPAP.idPoblacion}</td>
+                  {/* <td>{consultaPAP.idPoblacion}</td> */}
                   <td>{consultaPAP.nombrePoblacion}</td>
                 </tr>
               ))}

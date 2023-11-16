@@ -15,8 +15,9 @@ const Sidebar = ({ children }) => {
   }, []);
 
   const navLinks = [
-    { to: 'home', text: 'Home' },
+    // { to: 'home', text: 'Home' },
     { to: 'login', text: 'Iniciar Sesión', visible: !isAuthenticated },
+    { to: 'registro', text: 'Registro', visible: isAuthenticated },
     { to: 'listRes', text: 'Responsable', visible: isAuthenticated },
     { to: 'listDirector', text: 'Director', visible: isAuthenticated },
     { to: 'listaPais', text: 'Paises', visible: isAuthenticated },
@@ -25,14 +26,14 @@ const Sidebar = ({ children }) => {
     { to: 'listProyectos', text: 'Proyectos', visible: isAuthenticated },
     { to: 'listPoblacion', text: 'Poblacion', visible: isAuthenticated },
     { to: 'listaPoblacionActuacion', text: 'PoblacionActuacion', visible: isAuthenticated},
-    { to: 'consultaPAP', text: 'Consulta Proyecto-Actuacion-Poblacion', visible: !isAuthenticated},
-    { to: 'consultaIPP', text: 'Consulta Inversion-Proyecto-Poblacion', visible: !isAuthenticated},
-    { to: 'consultaPPH', text: 'Consulta Proyecto-Poblacion-Habitantes', visible: !isAuthenticated},
-    { to: 'consultaIPP', text: 'Consulta Inversion-Proyecto-Poblacion', visible: !isAuthenticated},
-    { to: 'consultaCSP', text: 'Consulta cantidad de sedes por pais', visible: !isAuthenticated},
-    { to: 'consultaCPP', text: 'Consulta cantidad de proyectos por pais', visible: !isAuthenticated},
-    { to: 'consultaCPS', text: 'Consulta cantidad de proyectos por sede', visible: !isAuthenticated},
-    // { to: 'consultaCSPN', text: 'Consulta cantidad de sedes por pais nombre', visible: !isAuthenticated},
+    { to: 'consultaPAP', text: 'Consulta PAP', visible: !isAuthenticated},
+    { to: 'consultaIPP', text: 'Consulta IPP', visible: !isAuthenticated},
+    { to: 'consultaPPH', text: 'Consulta PPH', visible: !isAuthenticated},
+    { to: 'consultaIPP', text: 'Consulta IPP', visible: !isAuthenticated},
+    { to: 'consultaCSP', text: 'Consulta CSP', visible: !isAuthenticated},
+    { to: 'consultaCPP', text: 'Consulta CPP', visible: !isAuthenticated},
+    { to: 'consultaCPS', text: 'Consulta CPS', visible: !isAuthenticated},
+    { to: 'consultaCSPN', text: 'Consulta CSPN', visible: !isAuthenticated},
 
   ];
 

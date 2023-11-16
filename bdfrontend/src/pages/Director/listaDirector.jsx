@@ -13,7 +13,10 @@ const ListaDirector = () => {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [searchId, setSearchId] = useState(""); // Nuevo estado para el filtro por ID
+  const [searchId, setSearchId] = useState("");
+  const [confirmarVisible, setConfirmarVisible] = useState(false);
+  const [directorAEliminar, setDirectorAEliminar] = useState(null);
+
   const itemsPerPage = 10;
 
   const handlePageChange = (selectedPage) => {
@@ -24,16 +27,25 @@ const ListaDirector = () => {
     navigate(`/Director/${id}`);
   };
 
-  const handleDeleteDirector = async (id) => {
+  const handleShowConfirmar = (director) => {
+    setDirectorAEliminar(director);
+    setConfirmarVisible(true);
+  };
+
+  const handleHideConfirmar = () => {
+    setConfirmarVisible(false);
+    setDirectorAEliminar(null);
+  };
+
+  const handleDeleteDirector = async () => {
     try {
-      await eliminarDirector(id);
+      await eliminarDirector(directorAEliminar.idDirector);
       await refetch();
       toast.success("Director eliminado correctamente");
     } catch (error) {
       console.error("Error en la solicitud Axios:", error);
 
       if (error.response) {
-        // El servidor respondió, pero con un código de estado que indica un error
         const { status, data } = error.response;
 
         if (status === 400) {
@@ -42,12 +54,12 @@ const ListaDirector = () => {
           toast.error(`Error al eliminar el director; está vinculado a otras tablas.`);
         }
       } else if (error.request) {
-        // La solicitud fue realizada, pero no se recibió respuesta del servidor
         toast.error("No se recibió respuesta del servidor al intentar eliminar el director.");
       } else {
-        // Algo más salió mal
         toast.error("Error al realizar la solicitud de eliminación. Consulta la consola para más detalles.");
       }
+    } finally {
+      handleHideConfirmar();
     }
   };
 
@@ -59,7 +71,6 @@ const ListaDirector = () => {
 
   if (isError) return <div className="error">Error</div>;
 
-  // Aplicar el filtro por ID
   const filteredData = data.filter((director) => {
     return String(director.idDirector) === searchId;
   });
@@ -76,13 +87,14 @@ const ListaDirector = () => {
         <Link to="/agregar-director-admin">
           <button className="btnAgregarDesdeAdmin">Crear Director</button>
         </Link>
-        {/* Input para filtrar por ID */}
+        
         <input
           type="text"
           placeholder="Buscar por ID"
           value={searchId}
           onChange={handleSearchChange}
         />
+        
         <div className="Div-Table">
           <table className="Table">
             <thead>
@@ -101,7 +113,7 @@ const ListaDirector = () => {
                   <td>{director.status}</td>
                   <td>
                     <button
-                      onClick={() => handleDeleteDirector(director.idDirector)}
+                      onClick={() => handleShowConfirmar(director)}
                       className="btnEliminar"
                     >
                       Borrar
@@ -131,6 +143,26 @@ const ListaDirector = () => {
         containerClassName={"pagination"}
         activeClassName={"active"}
       />
+
+      {confirmarVisible && (
+        <div className="overlay">
+          <div className="delete-confirm">
+            <p>¿Estás seguro de que deseas eliminar este Director?</p>
+            <button
+              onClick={handleDeleteDirector}
+              className="btn-confirm btn-yes"
+            >
+              Sí
+            </button>
+            <button
+              onClick={handleHideConfirmar}
+              className="btn-confirm btn-no"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

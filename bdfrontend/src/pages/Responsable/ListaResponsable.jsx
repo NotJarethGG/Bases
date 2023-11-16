@@ -1,4 +1,4 @@
-import { useState } from "react";
+import  { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +13,10 @@ const ListaResponsables = () => {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [searchId, setSearchId] = useState(""); // Nuevo estado para el filtro por ID
+  const [searchId, setSearchId] = useState("");
+  const [confirmarVisible, setConfirmarVisible] = useState(false);
+  const [responsableAEliminar, setResponsableAEliminar] = useState(null);
+
   const itemsPerPage = 10;
 
   const handlePageChange = (selectedPage) => {
@@ -24,30 +27,27 @@ const ListaResponsables = () => {
     navigate(`/Responsable/${idResponsable}`);
   };
 
-  const handleDeleteResponsable = async (id) => {
+  const handleShowConfirmar = (responsable) => {
+    setResponsableAEliminar(responsable);
+    setConfirmarVisible(true);
+  };
+
+  const handleHideConfirmar = () => {
+    setConfirmarVisible(false);
+    setResponsableAEliminar(null);
+  };
+
+  const handleDeleteResponsable = async () => {
     try {
-      await eliminarResponsable(id);
+      await eliminarResponsable(responsableAEliminar.idResponsable);
       await refetch();
       toast.success("Responsable eliminado correctamente");
     } catch (error) {
       console.error("Error en la solicitud Axios:", error);
 
-      if (error.response) {
-        // El servidor respondió, pero con un código de estado que indica un error
-        const { status, data } = error.response;
 
-        if (status === 400) {
-          toast.error(`Error al eliminar el responsable: ${data.message}`);
-        } else {
-          toast.error(`Error al eliminar el responsable; está vinculado a otras tablas.`);
-        }
-      } else if (error.request) {
-        // La solicitud fue realizada, pero no se recibió respuesta del servidor
-        toast.error("No se recibió respuesta del servidor al intentar eliminar el responsable.");
-      } else {
-        // Algo más salió mal
-        toast.error("Error al realizar la solicitud de eliminación. Consulta la consola para más detalles.");
-      }
+    } finally {
+      handleHideConfirmar();
     }
   };
 
@@ -59,7 +59,6 @@ const ListaResponsables = () => {
 
   if (isError) return <div className="error">Error</div>;
 
-  // Aplicar el filtro por ID
   const filteredData = data.filter((responsable) => {
     return String(responsable.idResponsable) === searchId;
   });
@@ -76,13 +75,14 @@ const ListaResponsables = () => {
         <Link to="/agregar-responsable-admin">
           <button className="btnAgregarDesdeAdmin">Crear Responsable</button>
         </Link>
-         {/* Input para filtrar por ID */}
-         <input
+        
+        <input
           type="text"
           placeholder="Buscar por ID"
           value={searchId}
           onChange={handleSearchChange}
         />
+        
         <div className="Div-Table">
           <table className="Table">
             <thead>
@@ -101,7 +101,7 @@ const ListaResponsables = () => {
                   <td>{responsable.status}</td>
                   <td>
                     <button
-                      onClick={() => handleDeleteResponsable(responsable.idResponsable)}
+                      onClick={() => handleShowConfirmar(responsable)}
                       className="btnEliminar"
                     >
                       Borrar
@@ -131,6 +131,26 @@ const ListaResponsables = () => {
         containerClassName={"pagination"}
         activeClassName={"active"}
       />
+
+      {confirmarVisible && (
+        <div className="overlay">
+          <div className="delete-confirm">
+            <p>¿Estás seguro de que deseas eliminar este Responsable?</p>
+            <button
+              onClick={handleDeleteResponsable}
+              className="btn-confirm btn-yes"
+            >
+              Sí
+            </button>
+            <button
+              onClick={handleHideConfirmar}
+              className="btn-confirm btn-no"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

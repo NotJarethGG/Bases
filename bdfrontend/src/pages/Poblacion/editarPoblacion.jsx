@@ -13,7 +13,7 @@ const EditarPoblacion = () => {
   const IdPaisRef = useRef(null);
   const NumHabitantesRef = useRef(null);
   const DescripcionRef = useRef(null);
-  const IdActuacionRef = useRef(null);
+
   const StatusRef = useRef(null);
 
   const mutationKey = `Poblacion/${id}`;
@@ -31,7 +31,7 @@ const EditarPoblacion = () => {
       idPais: IdPaisRef.current.value,
       numHabitantes: NumHabitantesRef.current.value,
       descripcion: DescripcionRef.current.value,
-      idActuacion: IdActuacionRef.current.value,
+      
       status: StatusRef.current.value,
     };
 
@@ -57,7 +57,7 @@ const EditarPoblacion = () => {
         IdPaisRef.current.value = datosPoblacion.idPais;
         NumHabitantesRef.current.value = datosPoblacion.numHabitantes;
         DescripcionRef.current.value = datosPoblacion.descripcion;
-        IdActuacionRef.current.value = datosPoblacion.idActuacion;
+      
         StatusRef.current.value = datosPoblacion.status;
       } catch (error) {
         console.error(error);
@@ -121,16 +121,7 @@ const EditarPoblacion = () => {
             className="edit-input-field"
           />
         </div>
-        <div className="edit-input">
-          <label htmlFor="idActuacion" className="edit-label">ID de la Actuación:</label>
-          <input
-            type="text"
-            id="idActuacion"
-            ref={IdActuacionRef}
-            required
-            className="edit-input-field"
-          />
-        </div>
+        
         <div className="edit-input">
           <label htmlFor="status" className="edit-label">Status:</label>
           <input

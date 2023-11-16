@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
-import { updatePais} from '../../services/PaisServicio';
+import { updatePoblacionActuacion} from '../../services/PoblacionActuacion';
 import { toast, ToastContainer } from 'react-toastify';
 
 const EditarPobAct = () => {
@@ -13,7 +13,7 @@ const EditarPobAct = () => {
   const IdAct = useRef(null);
 
   const mutationKey = `Poblacion_Actuacion/${id}`;
-  const mutation = useMutation(mutationKey, updatePais, {
+  const mutation = useMutation(mutationKey, updatePoblacionActuacion, {
     onSettled: () => queryClient.invalidateQueries(mutationKey),
   });
 
@@ -87,8 +87,8 @@ const EditarPobAct = () => {
 
   return (
     <div className="edit-container-tipo">
-      <h1 className="edit-tipo">Editar Pais</h1>
-      <p className="edit-id">ID del Pais a editar: {id}</p>
+      <h1 className="edit-tipo">Editar Poblacion Actuacion</h1>
+      <p className="edit-id">ID PoblacionActuacion a editar: {id}</p>
       <form onSubmit={handleRegistro} className="edit-form">
         <div className="edit-input">
           <label htmlFor="idPais" className="edit-label">Confirmar ID PoblacionActuacion a editar:</label>

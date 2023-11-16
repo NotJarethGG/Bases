@@ -34,6 +34,7 @@ const Sidebar = ({ children }) => {
     { to: 'consultaCPP', text: 'Consulta CPP', visible: !isAuthenticated},
     { to: 'consultaCPS', text: 'Consulta CPS', visible: !isAuthenticated},
     { to: 'consultaCSPN', text: 'Consulta CSPN', visible: !isAuthenticated},
+    { to: 'logout', text: 'Cerrar sesion', visible: isAuthenticated},
 
   ];
 

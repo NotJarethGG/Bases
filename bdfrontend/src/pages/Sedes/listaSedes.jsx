@@ -5,7 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
 import { getSedes, eliminarSede } from "../../services/SedesServicio";
 import { getPais } from "../../services/PaisServicio";
-import { getDirector} from "../../services/DirectorServicio";
+import { getDirector } from "../../services/DirectorServicio";
+import { toast } from "react-toastify";
 
 const ListaSedes = () => {
   const { data: sedes, isLoading, isError, refetch } = useQuery("Sede", getSedes, {
@@ -16,6 +17,8 @@ const ListaSedes = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [searchId, setSearchId] = useState("");
+  const [confirmarVisible, setConfirmarVisible] = useState(false);
+  const [sedeAEliminar, setSedeAEliminar] = useState(null);
   const itemsPerPage = 10;
 
   const [paises, setPaises] = useState([]);
@@ -33,7 +36,7 @@ const ListaSedes = () => {
 
     const fetchDirectores = async () => {
       try {
-        const directoresData = await getDirector();  // Llama a la función que obtiene la lista de directores
+        const directoresData = await getDirector();
         setDirectores(directoresData);
       } catch (error) {
         console.error('Error al obtener la lista de directores:', error);
@@ -52,12 +55,27 @@ const ListaSedes = () => {
     navigate(`/Sede/${id}`);
   };
 
-  const handleDeleteSede = async (id) => {
+  const handleShowConfirmar = (sede) => {
+    setSedeAEliminar(sede);
+    setConfirmarVisible(true);
+  };
+
+  const handleHideConfirmar = () => {
+    setConfirmarVisible(false);
+    setSedeAEliminar(null);
+  };
+
+  const handleDeleteSede = async () => {
     try {
-      await eliminarSede(id);
+      await eliminarSede(sedeAEliminar.idSede);
       await refetch();
+      toast.success("Sede eliminada correctamente");
     } catch (error) {
       console.error("Error en la solicitud Axios:", error);
+
+      // Agregar lógica para mostrar una notificación de error si lo deseas
+    } finally {
+      handleHideConfirmar();
     }
   };
 
@@ -81,15 +99,18 @@ const ListaSedes = () => {
     <>
       <div className="type-registration">
         <h1 className="Namelist">Registro de sedes</h1>
+        
         <Link to="/agregar-sede-admin">
           <button className="btnAgregarDesdeAdmin">Crear Sede</button>
         </Link>
+        
         <input
           type="text"
           placeholder="Buscar por ID"
           value={searchId}
           onChange={handleSearchChange}
         />
+        
         <div className="Div-Table">
           <table className="Table">
             <thead>
@@ -116,7 +137,7 @@ const ListaSedes = () => {
                   <td>{sede.status}</td>
                   <td>
                     <button
-                      onClick={() => handleDeleteSede(sede.idSede)}
+                      onClick={() => handleShowConfirmar(sede)}
                       className="btnEliminar"
                     >
                       Borrar
@@ -146,6 +167,26 @@ const ListaSedes = () => {
         containerClassName={"pagination"}
         activeClassName={"active"}
       />
+
+      {confirmarVisible && (
+        <div className="overlay">
+          <div className="delete-confirm">
+            <p>¿Estás seguro de que deseas eliminar esta Sede?</p>
+            <button
+              onClick={handleDeleteSede}
+              className="btn-confirm btn-yes"
+            >
+              Sí
+            </button>
+            <button
+              onClick={handleHideConfirmar}
+              className="btn-confirm btn-no"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

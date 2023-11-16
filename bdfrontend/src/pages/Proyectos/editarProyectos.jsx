@@ -98,7 +98,7 @@ const EditarProyecto = () => {
         <div className="edit-input">
           <label htmlFor="fechaInicio" className="edit-label">Fecha de Inicio:</label>
           <input
-            type="datetime-local"
+            type="date"
             id="fechaInicio"
             ref={FechaInicioRef}
             required
@@ -108,7 +108,7 @@ const EditarProyecto = () => {
         <div className="edit-input">
           <label htmlFor="fechaFin" className="edit-label">Fecha de Fin:</label>
           <input
-            type="datetime-local"
+            type="date"
             id="fechaFin"
             ref={FechaFinRef}
             required

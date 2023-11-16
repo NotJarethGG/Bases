@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
 import './styles/sidebar.css'
 import './styles/EstilosPais.css'
+import './styles/Modal.css'
 //rutas
 import { Layout } from './pages/_layout/layout'
 import ListaResponsable from './pages/Responsable/listaResponsable';
@@ -47,6 +48,7 @@ import ListaConsultaCPP from './pages/Consultas/Consulta_ContarProyectosEnTodosL
 import ListaConsultaCPS from './pages/Consultas/Consulta_ContarProyectosPorTodasSedes';
 import Registro from './pages/Registro/registro';
 import ListaConsultaCSPN from './pages/Consultas/consulta_SedesPorPaisNombre';
+import Logout from './pages/Login/logout';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -92,6 +94,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path='/login' element={<Login/>}/>
         <Route path='/registro' element={<Registro/>}/>
+        <Route path='/logout' element={<Logout/>}/>
 
         <Route path='/dashboard/login' element={<Login/>}/>
 
@@ -104,7 +107,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/consultaIPP' element={<ListaConsultaIPP/>}/>
         <Route path='/consultaPPH' element={<ListaConsultaPPH/>}/>
         <Route path='/consultaCSP' element={<ListaConsultaCSP/>}/>
-       // <Route path='/consultaCSPN' element={<ListaConsultaCSPN/>}/>
+        <Route path='/consultaCSPN' element={<ListaConsultaCSPN/>}/>
        <Route path='/consultaCPP' element={<ListaConsultaCPP/>}/>
        <Route path='/consultaCPS' element={<ListaConsultaCPS/>}/>
 

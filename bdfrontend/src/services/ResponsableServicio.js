@@ -20,7 +20,7 @@ export const createResponsable = async (responsable) => {
   
 export const eliminarResponsable = async (id) => {
   try {
-    const response = await api.delete(`Director/${id}`);
+    const response = await api.delete(`Responsable/${id}`);
     console.log(`Responsable con ID ${id} eliminado correctamente. Respuesta del servidor:`, response.data);
 
     // Puedes devolver la respuesta si es necesario

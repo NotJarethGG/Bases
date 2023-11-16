@@ -44,8 +44,7 @@
   color: white;
 }
 
-.btnEliminar,
-.btnModificar {
+.btnEliminar {
   background-color: #DC3545;
   color: white;
   border: none;
@@ -54,6 +53,14 @@
   cursor: pointer;
 }
 
+.btnModificar {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
 /* Estilos para la paginación */
 .pagination {
   display: flex;

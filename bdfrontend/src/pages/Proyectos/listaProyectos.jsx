@@ -50,7 +50,7 @@ const ListaProyectos = () => {
   };
 
   const handleEditProyecto = (id) => {
-    navigate(`/Proyecto/${id}`);
+    navigate(`/Proyecto/Actualizar/${id}`);
   };
 
   const handleShowConfirmar = (proyecto) => {

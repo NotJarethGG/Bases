@@ -117,6 +117,7 @@ const ListaSedes = () => {
               <tr>
                 <th>ID sede</th>
                 <th>Ciudad</th>
+                <th>Presupuesto</th>
                 <th>Direccion</th>
                 <th>País</th>
                 <th>Telefono</th>
@@ -130,6 +131,7 @@ const ListaSedes = () => {
                 <tr key={sede.idSede}>
                   <td>{sede.idSede}</td>
                   <td>{sede.ciudad}</td>
+                  <td>{sede.fondo_Presupuestario}</td>
                   <td>{sede.direccion}</td>
                   <td>{paises.find((pais) => pais.idPais === sede.idPais)?.nombre || "NombrePaisNoEncontrado"}</td>
                   <td>{sede.telefono}</td>

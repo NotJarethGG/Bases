@@ -108,7 +108,6 @@ import { getProyecto} from "../../services/ProyectosServicio";
 
 const CrearActuacion = () => {
   const queryClient = useQueryClient();
-  const PresupuestoRef = useRef(null);
   const NombreRef = useRef(null);
   const DescripcionRef = useRef(null);
   const IdProyectoRef = useRef(null);
@@ -146,7 +145,6 @@ const CrearActuacion = () => {
     // Realiza la validación del formulario aquí
 
     let newActuacion = {
-      presupuesto: PresupuestoRef.current.value,
       nombre: NombreRef.current.value,
       descripcion: DescripcionRef.current.value, // Agregado campo Descripcion
       idProyecto: IdProyectoRef.current.value, // Agregado campo IdProyecto
@@ -164,15 +162,6 @@ const CrearActuacion = () => {
     <div className="CrearSoli">
       <h2>Crear Actuación</h2>
       <form onSubmit={handleRegistro}>
-        <div className='div-input-tipo'>
-          <label htmlFor="presupuesto">Presupuesto:</label>
-          <input
-            type="text"
-            id="presupuesto"
-            ref={PresupuestoRef}
-            required
-          />
-        </div>
         <div className='div-input-tipo'>
           <label htmlFor="nombre">Nombre:</label>
           <input

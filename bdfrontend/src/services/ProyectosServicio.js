@@ -8,7 +8,7 @@ export const getProyecto = async () => {
 
 export const eliminarProyecto= async (id) => {
     try {
-        const response = await api.delete(`Proyecto/${id}`);
+        const response = await api.delete(`Proyecto/Eliminar/${id}`);
         console.log(response.data);
     } catch (error) {
     
@@ -18,7 +18,7 @@ export const eliminarProyecto= async (id) => {
 
 
 export const createProyecto = async (sede) => { 
-    let data = await api.post('/Proyecto', sede).then(result => result.data);
+    let data = await api.post('/Proyecto/Insertar', sede).then(result => result.data);
     return data;
 };
 
@@ -32,6 +32,6 @@ export const updateProyecto = async (newData) => {
     
     console.log(newData);    
     // En este punto, `newData` debe ser un objeto con los datos de la reserva  a actualizar
-    let data = await api.put(`/Proyecto/${newData.id}`, newData).then(result => result.data);
+    let data = await api.put(`/Proyecto/Actualizar/${newData.id}`, newData).then(result => result.data);
     return data;
 };

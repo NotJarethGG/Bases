@@ -78,7 +78,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path='/listProyectos' element={<ListaProyectos/>}/>
         <Route path='/agregar-proyecto-admin' element={<CrearProyecto/>}/>
-        <Route path="/Proyecto/:id" element={<EditarProyecto/>}/>
+        <Route path="/Proyecto/Actualizar/:id" element={<EditarProyecto/>}/>
 
         <Route path='/listPoblacion' element={<ListaPoblacion/>}/>
         <Route path='/agregar-poblacion-admin' element={<CrearPoblacion/>}/>

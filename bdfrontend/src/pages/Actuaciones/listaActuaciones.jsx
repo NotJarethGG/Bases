@@ -103,7 +103,6 @@ const ListaActuacion = () => {
             <thead>
               <tr>
                 <th>ID Actuacion</th>
-                <th>Presupuesto</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Proyecto</th>
@@ -115,7 +114,6 @@ const ListaActuacion = () => {
               {currentData.map((actuacion) => (
                 <tr key={actuacion.idActuacion}>
                   <td>{actuacion.idActuacion}</td>
-                  <td>{actuacion.presupuesto}</td>
                   <td>{actuacion.nombre}</td>
                   <td>{actuacion.descripcion}</td>
                   <td>{proyectos.find((proyecto) => proyecto.idProyecto === actuacion.idProyecto)?.titulo || "ProyectoNoEncontrado"}</td>

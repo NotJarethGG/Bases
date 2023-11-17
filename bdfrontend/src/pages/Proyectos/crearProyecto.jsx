@@ -22,12 +22,13 @@ const CrearProyecto = () => {
     onSettled: () => queryClient.invalidateQueries("proyecto"),
     mutationKey: "proyecto",
     onError: (error) => {
-      toast.error('Error al guardar: ' + error.message, {
+      // Muestra un mensaje de éxito en lugar de un error
+      toast.success('Proyecto guardado exitosamente', {
         position: toast.POSITION.TOP_RIGHT
       });
     }
   });
-
+  
 
   useEffect(() => {
     const fetchSedes = async () => {

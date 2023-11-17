@@ -9,7 +9,7 @@ const EditarActuacion = () => {
   const queryClient = useQueryClient();
 
   const IdActuacionRef = useRef(null); // Agregado el campo IdActuacion
-  const PresupuestoRef = useRef(null);
+  
   const NombreActuacionRef = useRef(null);
   const DescripcionRef = useRef(null);
   const IdProyectoRef = useRef(null);
@@ -26,7 +26,7 @@ const EditarActuacion = () => {
     let newData = {
       id: id,
       idActuacion: IdActuacionRef.current.value,
-      presupuesto: PresupuestoRef.current.value,
+      
       nombre: NombreActuacionRef.current.value,
       descripcion: DescripcionRef.current.value,
       idProyecto: IdProyectoRef.current.value,
@@ -49,7 +49,7 @@ const EditarActuacion = () => {
       try {
         const datosActuacion = await getActuacionID(id);
         IdActuacionRef.current.value = datosActuacion.idActuacion;
-        PresupuestoRef.current.value = datosActuacion.presupuesto;
+        
         NombreActuacionRef.current.value = datosActuacion.nombre;
         DescripcionRef.current.value = datosActuacion.descripcion;
         IdProyectoRef.current.value = datosActuacion.idProyecto;
@@ -73,18 +73,6 @@ const EditarActuacion = () => {
             type="text"
             id="idActuacion"
             ref={IdActuacionRef}
-            required
-            className="edit-input-field"
-          />
-        </div>
-        <div className="edit-input">
-          <label htmlFor="presupuesto" className="edit-label">
-            Presupuesto:
-          </label>
-          <input
-            type="text"
-            id="presupuesto"
-            ref={PresupuestoRef}
             required
             className="edit-input-field"
           />
